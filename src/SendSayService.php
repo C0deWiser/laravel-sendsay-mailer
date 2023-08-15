@@ -176,6 +176,9 @@ class SendSayService implements SendSayServiceInterface
                 'json'   => $response->json()
             ];
 
+            $this->logger?->debug(class_basename($this), ['request' => $request, 'response' => $response]);
+
+            unset($request['data']);
             $this->logger?->info(class_basename($this), ['request' => $request, 'response' => $response]);
         }
     }

@@ -38,7 +38,7 @@ Compose `Mailable` with more than one recipient and just
 send it:
 
 ```php
-use \Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Mail;
 
 $recipients = [
     'foo@example.com',
@@ -59,8 +59,8 @@ The only way to pass mailer response through facade back to the application
 `\Symfony\Component\Mailer\SentMessage`:
 
 ```php
-use \Illuminate\Support\Facades\Mail;
-use \Illuminate\Mail\Events\MessageSent;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Events\MessageSent;
 
 $recipients = [
     'foo@example.com',

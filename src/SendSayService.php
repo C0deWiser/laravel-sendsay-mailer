@@ -179,7 +179,7 @@ class SendSayService implements SendSayServiceInterface
             $this->logger?->debug(class_basename($this), ['request' => $request, 'response' => $response]);
 
             if (isset($request['data']['letter']['message']['html'])) {
-                $request['data']['letter']['message']['html'] = '[...]';
+                $request['data']['letter']['message']['html'] = '[html]';
             }
 
             $this->logger?->info(class_basename($this), ['request' => $request, 'response' => $response]);

@@ -22,8 +22,7 @@ class SendSayService implements SendSayServiceInterface
         protected string $login,
         protected string $password,
         protected string $sub_login = ''
-    )
-    {
+    ) {
         //
     }
 
@@ -65,11 +64,11 @@ class SendSayService implements SendSayServiceInterface
             'action'     => 'issue.send',
             'label'      => $email->getHeaders()->get('x-metadata-label')?->getBody() ?? '',
             'letter'     => [
-                'subject'      => $email->getSubject(),
-                'from.name'    => $this->from_name,
-                'from.email'   => $this->from_address,
-                'message'      => $message,
-                'attaches'     => $attaches
+                'subject'    => $email->getSubject(),
+                'from.name'  => $this->from_name,
+                'from.email' => $this->from_address,
+                'message'    => $message,
+                'attaches'   => $attaches
             ],
             'name'       => $name,
             'group'      => $group,
@@ -80,7 +79,8 @@ class SendSayService implements SendSayServiceInterface
     }
 
     /**
-     * @param string[]|Address[] $emails
+     * @param  string[]|Address[]  $emails
+     *
      * @return array
      */
     protected function buildUsers(array $emails): array
@@ -178,7 +178,10 @@ class SendSayService implements SendSayServiceInterface
 
             $this->logger?->debug(class_basename($this), ['request' => $request, 'response' => $response]);
 
-            unset($request['data']);
+            if (isset($request['data']['letter']['message']['html'])) {
+                $request['data']['letter']['message']['html'] = '[...]';
+            }
+
             $this->logger?->info(class_basename($this), ['request' => $request, 'response' => $response]);
         }
     }
